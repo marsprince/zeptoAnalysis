@@ -161,14 +161,39 @@ $.fn.load = function(url, data, success){
         options = parseArguments(url, data, success),
         callback = options.success
     if (parts.length > 1) options.url = parts[0], selector = parts[1]
-    options.success = function(response){
-      self.html(selector ?
+    options.success = function(response){//设置成功后回调
+      self.html(selector ?  //如果网址有选择器，插入到指定位置
         $('<div>').html(response.replace(rscript, "")).find(selector)
         : response)
       callback && callback.apply(self, arguments)
     }
     $.ajax(options)
     return this
+  }
+```
+
+$.param：将表单元素数组或者对象序列化
+
+```javascript
+    /**
+     * 将表单元素数组或者对象序列化
+     * @param obj          数组会按照name/value对进行序列化，普通对象按照key/value对进行序列化
+     * @param traditional 是否使用传统的方式浅层序列化
+     * @returns {string}
+     */
+  $.param = function(obj, traditional){
+    var params = []
+ 
+    //URI编码后添加到数组里
+    params.add = function(key, value) {
+      if ($.isFunction(value)) value = value()
+      if (value == null) value = ""
+ 
+        //encodeURIComponent       编码
+        this.push(escape(key) + '=' + escape(value))
+    }
+    serialize(params, obj, traditional)
+    return params.join('&').replace(/%20/g, '+')
   }
 ```
 
