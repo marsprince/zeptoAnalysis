@@ -1,0 +1,26 @@
+<html lang="en"> 
+<head> 
+<meta charset="utf-8"> 
+<title>test</title> 
+<script src="../src/zepto.js"></script>  
+<script src="../src/event.js"></script>
+</head> 
+<body> 
+<input type="checkbox" /> 
+<input type="text" id="test"/> 
+<input type="button" value="button" id="bnt" onclick="bntClick()"/> 
+</body> 
+
+<script> 
+$( document ).ready(function() { 
+$("input[type='checkbox']").bind("click",function(){ 
+$("#test").val("www.baidu.com"); 
+}); 
+}); 
+
+function bntClick(){ 
+
+console.log($("input[type='checkbox']"))
+} 
+</script> 
+</html> 
