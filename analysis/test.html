@@ -8,19 +8,18 @@
 <body> 
 <input type="checkbox" /> 
 <input type="text" id="test"/> 
-<input type="button" value="button" id="bnt" onclick="bntClick()"/> 
+<div id="tap">点击</div>
 </body> 
 
 <script> 
-$( document ).ready(function() { 
-$("input[type='checkbox']").bind("click",function(){ 
-$("#test").val("www.baidu.com"); 
-}); 
-}); 
+$(document).ready(function() {  
+    $("#tap").on("click",function(){
+        $("#test").val("这是click")
+    });
+     $("#tap").on("touchend",function(){
+        $("#test").val("这是touch")
+    })
 
-function bntClick(){ 
-
-console.log($("input[type='checkbox']"))
-} 
+}); 
 </script> 
 </html> 
